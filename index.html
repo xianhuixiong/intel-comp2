@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Antitrust International Cooperation Portal</title>
+    <meta
+      name="description"
+      content="反垄断国际交流合作数据库原型：文件、域外法、机构、国际组织、动态与案例的统一检索与归档。"
+    />
+
+    <!-- Fonts (optional). System fonts will be used if blocked. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+
+    <div class="app" id="app">
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <!-- Simple, license-free emblem-like mark -->
+            <svg viewBox="0 0 64 64" role="img" aria-label="Emblem">
+              <defs>
+                <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="var(--primary)" />
+                  <stop offset="1" stop-color="var(--primary-700)" />
+                </linearGradient>
+              </defs>
+              <path
+                fill="url(#g)"
+                d="M32 4c10 6 20 6 28 8v20c0 16-12 24-28 28C16 56 4 48 4 32V12c8-2 18-2 28-8z"
+              />
+              <path
+                fill="rgba(255,255,255,.92)"
+                d="M20 26h24v4H20zm0 10h24v4H20z"
+              />
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">反垄断国际交流合作</div>
+            <div class="brand-sub">数据库模块原型（可直接部署）</div>
+          </div>
+        </div>
+
+        <nav class="nav" id="nav" aria-label="Navigation">
+          <!-- Filled by JS to keep routes in one place -->
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="tip">
+            <div class="tip-title">快捷键</div>
+            <div class="tip-body">
+              <span class="kbd">Ctrl</span> + <span class="kbd">K</span> 全局检索
+              <br />
+              <span class="kbd">/</span> 聚焦搜索框
+            </div>
+          </div>
+          <div class="muted" style="margin-top: 10px">Version: <span id="version"></span></div>
+        </div>
+      </aside>
+
+      <div class="shell">
+        <header class="topbar" aria-label="Header">
+          <button class="icon-btn" id="sidebarToggle" aria-label="Toggle navigation">
+            <span class="icon" aria-hidden="true"></span>
+          </button>
+
+          <div class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></div>
+
+          <div class="topbar-right">
+            <div class="search" role="search">
+              <label class="sr-only" for="q">全局检索</label>
+              <input
+                id="q"
+                name="q"
+                type="search"
+                placeholder="检索文件 / 司法辖区 / 机构 / 国际组织 / 动态 / 案例…"
+                autocomplete="off"
+              />
+              <button class="btn btn-primary" id="searchBtn">搜索</button>
+              <div class="search-suggest" id="suggest" role="listbox" aria-label="Suggestions"></div>
+            </div>
+            <button class="btn btn-ghost" id="helpBtn">使用说明</button>
+          </div>
+        </header>
+
+        <main class="main" id="main" tabindex="-1">
+          <div class="page" id="page"></div>
+        </main>
+
+        <footer class="footer">
+          <div>
+            <span class="muted">数据来源均来自公开权威渠道，示例仅用于展示归档结构与检索体验。</span>
+          </div>
+          <div class="muted">© Antitrust Cooperation Portal Prototype</div>
+        </footer>
+      </div>
+    </div>
+
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modal-backdrop" data-close="1"></div>
+      <div class="modal-card" role="dialog" aria-modal="true" aria-label="Help">
+        <div class="modal-head">
+          <div class="modal-title">使用说明（原型演示）</div>
+          <button class="icon-btn" aria-label="Close" data-close="1">×</button>
+        </div>
+        <div class="modal-body">
+          <ul class="ul">
+            <li>左侧为栏目导航；顶部为面包屑与全局检索。</li>
+            <li>列表页支持：筛选、排序、收藏、导出（CSV）、复制引用、打印。</li>
+            <li>详情页提供：原文链接、中文要点（示例翻译/摘译）、关联辖区/机构/组织/案例跳转。</li>
+            <li>本原型采用“真实来源 + 结构化元数据 + 可追溯引用”的数据标准。</li>
+          </ul>
+          <div class="callout">
+            <div class="callout-title">提示</div>
+            <div class="callout-body">
+              该原型为“数据库模块”信息架构与UE/UI的可运行演示，可直接部署在 Vercel。
+              生产版本可无缝扩展至：权限体系、审校流程、全文检索引擎、自动采集与多语机器辅助翻译。
+            </div>
+          </div>
+        </div>
+        <div class="modal-foot">
+          <button class="btn btn-primary" data-close="1">我知道了</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="assets/app.js"></script>
+  </body>
+</html>
